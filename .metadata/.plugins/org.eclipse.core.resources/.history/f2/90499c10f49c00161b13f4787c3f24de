@@ -1,0 +1,134 @@
+/*
+ * dcan_A8.c
+ *
+ *  Created on: 2016-10-27
+ *      Author: Administrator
+ */
+#include "Dev_can_am335x.h"
+#include "canfestival.h"
+#include <can.h>
+#include <dcan.h>
+#include <assert.h>
+#include "canam335x.h"
+#include "dcan_A8.h"
+#include <stdarg.h>
+#include <stdlib.h>
+static short CanHandle[2] = {0, 1};
+static int rt_strcmp( const char *src, const char *dst )
+{
+  int ret = 0;
+
+  while( ! (ret = *(unsigned char *)src - *(unsigned char *)dst) && *dst)
+  {
+    src++;
+    dst++;
+  }
+
+  if( ret < 0 )
+  {
+    ret = -1 ;
+  }
+  else
+  {
+    if( ret > 0 )
+      ret = 1 ;
+  }
+
+  return ret;
+}
+
+
+
+
+static int TranslateBaudRate( char* optarg )
+{
+  /* values see documentation of CO-PCICAN */
+	if( !rt_strcmp( optarg, "5k"    ) ) return AM335X_CAN_BITRATE_BRP_5K_DEFAULT;
+  if( !rt_strcmp( optarg, "1M"    ) ) return AM335X_CAN_BITRATE_BRP_1M_DEFAULT;
+  if( !rt_strcmp( optarg, "500K"  ) ) return AM335X_CAN_BITRATE_BRP_500K_DEFAULT;
+  if( !rt_strcmp( optarg, "250K"  ) ) return AM335X_CAN_BITRATE_BRP_250K_DEFAULT;
+  if( !rt_strcmp( optarg, "125K"  ) ) return AM335X_CAN_BITRATE_BRP_125K_DEFAULT;
+  if( !rt_strcmp( optarg, "100K"  ) ) return AM335X_CAN_BITRATE_BRP_100K_DEFAULT;
+  if( !rt_strcmp( optarg, "10K"   ) ) return AM335X_CAN_BITRATE_BRP_10K_DEFAULT;
+  if( !rt_strcmp( optarg, "1000K"   ) ) return AM335X_CAN_BITRATE_BRP_1M_DEFAULT;
+
+  return -1;
+}
+
+CAN_HANDLE canOpen_driver(s_BOARD *caninfo)
+/******************************************************************************
+Initialize the hardware to receive CAN messages and start the timer for the
+CANopen stack.
+INPUT
+OUTPUT
+******************************************************************************/
+{
+	int bitrate = TranslateBaudRate( caninfo->baudrate);
+	int instance = atoi( caninfo->busname);
+	if( instance != 0 && instance != 1)
+		return NULL;
+  if( device_init(instance, bitrate)== 0)
+	  return &CanHandle[instance];
+  return NULL;
+}
+
+UNS8 canSend_driver(CAN_PORT port, Message const *m)
+/******************************************************************************
+The driver send a CAN message passed from the CANopen stack
+INPUT	CAN_PORT is not used (only 1 avaiable)
+	Message *m pointer to message to send
+OUTPUT	1 if  hardware -> CAN frame
+******************************************************************************/
+{
+	int *instance = (int *)port;
+	return Transfer( (appMessage_t *)m,  *instance);
+}
+
+unsigned char canReceive_driver(CAN_PORT port, Message *m)
+/******************************************************************************
+The driver passes a received CAN message to the stack
+INPUT	Message *m pointer to received CAN message
+OUTPUT	1 if a message received
+******************************************************************************/
+{
+
+	appMessage_t *recv_msg;
+	short *instance = (short *)port;
+	if( *instance > 1)
+		return -1;
+
+	if(AM335X_CANDEV[*instance].devinfo->errstatus&AM335X_DCAN_ERR_RXOK)	{
+		recv_msg = &AM335X_CANDEV_Parameter.DCAN_REV_DATA[*instance][AM335X_CANDEV_Parameter.MsgHead[*instance]];
+		m->len =  recv_msg->len;
+		m->cob_id = recv_msg->cob_id;
+		memset( m->data, 0, 8);
+		memcpy( m->data, recv_msg->data , m->len);
+		recv_msg->cob_id = 0;
+		memset( recv_msg->data, 0, 8);
+		AM335X_CANDEV_Parameter.MsgHead[*instance] = (AM335X_CANDEV_Parameter.MsgHead[*instance]+1) % MAXMSGNUM;
+
+		//队列中没有数据采清除接受标志
+		if( AM335X_CANDEV_Parameter.MsgHead[*instance] ==  AM335X_CANDEV_Parameter.MsgTail[*instance])
+			atomic_clr(&AM335X_CANDEV[*instance].devinfo->errstatus,AM335X_DCAN_ERR_RXOK);
+		return 1;
+	}
+
+	return 0;
+
+}
+
+UNS8 canChangeBaudRate_driver(CAN_HANDLE  port, char* baud)
+{
+
+	return 0; // NOT OK
+}
+
+int canClose_driver(CAN_HANDLE fd)
+{
+
+	return 0;
+
+}
+
+
+

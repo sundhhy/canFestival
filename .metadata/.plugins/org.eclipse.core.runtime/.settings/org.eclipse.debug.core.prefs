@@ -1,0 +1,3 @@
+#Fri Oct 28 18:11:07 CST 2016
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<watchExpressions>\r\n<expression enabled\="true" text\="CanHandle"/>\r\n<expression enabled\="true" text\="canports"/>\r\n</watchExpressions>\r\n
+eclipse.preferences.version=1

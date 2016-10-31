@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="LastUsedSourceTemplate" value="Default C source template"/>
+	<item key="LastUsedHeaderTemplate" value="Default C header template"/>
+	<section name="PDOMSearchPage">
+		<item key="caseSensitive" value="false"/>
+		<item key="searchFlags" value="227191"/>
+		<list key="previousPatterns">
+			<item value="canOpen"/>
+			<item value="canSend_driver"/>
+			<item value="_driver"/>
+			<item value="struct_s_BOARD"/>
+			<item value="Transfer"/>
+			<item value="DCAN_REV_DATA"/>
+			<item value="can_receive"/>
+			<item value="SillySlave_storeODSubIndex"/>
+			<item value="InitCANdevice"/>
+			<item value="cob_id"/>
+			<item value="MAX_CAN_BUS_ID"/>
+			<item value="can_send"/>
+			<item value="Message"/>
+			<item value="canReceive"/>
+			<item value="canSend"/>
+			<item value="timer_notify"/>
+		</list>
+	</section>
+	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
+	</section>
+	<section name="completion_proposal_size">
+	</section>
+</section>

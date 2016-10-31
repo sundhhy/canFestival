@@ -1,0 +1,44 @@
+/*
+ * dcan_A8.h
+ *
+ *  Created on: 2016-10-27
+ *      Author: Administrator
+ */
+
+#ifndef DCAN_A8_H_
+#define DCAN_A8_H_
+#ifndef __CAN_AT91__
+#define __CAN_AT91__
+
+//#include "config.h"
+
+// Canfestivals includes
+#include "can.h"
+#include "canfestival.h"
+
+
+// Number of receive MB
+#define NB_MB				8
+#define NB_RX_MB			4
+// Number of transmit MB
+#define NB_TX_MB			(NB_MB - NB_RX_MB)
+
+#if (NB_TX_MB < 1)
+#error define less RX MBs, you must have at least 1 TX MB!
+#elif (NB_RX_MB < 1)
+#error define at least 1 RX MBs!
+#endif
+
+#define START_TX_MB			NB_RX_MB
+#define TX_INT_MSK			((0xFF << (NB_MB - NB_TX_MB)) & 0xFF)
+#define RX_INT_MSK			(0xFF >> (NB_MB - NB_RX_MB))
+
+/************************* To be called by user app ***************************/
+
+unsigned char canInit(int instance, unsigned int bitrate);
+unsigned char canSend(CAN_PORT notused, Message *m);
+unsigned char can_receive(Message *m);
+#endif
+
+
+#endif /* DCAN_A8_H_ */

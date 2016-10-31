@@ -1,0 +1,85 @@
+/*
+ * dcan_A8.c
+ *
+ *  Created on: 2016-10-27
+ *      Author: Administrator
+ */
+#include "Dev_can_am335x.h"
+#include <can.h>
+#include <assert.h>
+#include "canam335x.h"
+#include "dcan_A8.h"
+#include <stdarg.h>
+
+void can_irq_handler(void);
+
+unsigned char canInit(unsigned int bitrate)
+/******************************************************************************
+Initialize the hardware to receive CAN messages and start the timer for the
+CANopen stack.
+INPUT
+OUTPUT
+******************************************************************************/
+{
+  unsigned char i;
+  device_init(instance, bitrate);
+  return 1;
+}
+
+unsigned char canSend(CAN_PORT notused, Message *m)
+/******************************************************************************
+The driver send a CAN message passed from the CANopen stack
+INPUT	CAN_PORT is not used (only 1 avaiable)
+	Message *m pointer to message to send
+OUTPUT	1 if  hardware -> CAN frame
+******************************************************************************/
+{
+  unsigned int mask;
+  AT91S_CAN_MB *mb_ptr = AT91C_BASE_CAN_MB0 + START_TX_MB;
+
+  if ((AT91F_CAN_GetStatus(AT91C_BASE_CAN) & TX_INT_MSK) == 0)
+    return 0;			// No free MB for sending
+
+  for (mask = 1 << START_TX_MB;
+       (mask & TX_INT_MSK) && !(AT91F_CAN_GetStatus(AT91C_BASE_CAN) & mask);
+	mask <<= 1, mb_ptr++)	// Search the first free MB
+  {
+  }
+  AT91F_CAN_CfgMessageIDReg(mb_ptr, m->cob_id, 0);	// Set cob id
+  // Mailbox Control Register, set remote transmission request and data lenght code
+  AT91F_CAN_CfgMessageCtrlReg(mb_ptr, m->rtr ? AT91C_CAN_MRTR : 0 | (m->len << 16));
+  AT91F_CAN_CfgMessageDataLow(mb_ptr, *(UNS32*)(&m->data[0]));// Mailbox Data Low Reg
+  AT91F_CAN_CfgMessageDataHigh(mb_ptr, *(UNS32*)(&m->data[4]));// Mailbox Data High Reg
+  // Start sending by writing the MB configuration register to transmit
+  AT91F_CAN_InitTransferRequest(AT91C_BASE_CAN, mask);
+  return 1;	// successful
+}
+
+unsigned char canReceive(Message *m)
+/******************************************************************************
+The driver passes a received CAN message to the stack
+INPUT	Message *m pointer to received CAN message
+OUTPUT	1 if a message received
+******************************************************************************/
+{
+  unsigned int mask;
+  AT91S_CAN_MB *mb_ptr = AT91C_BASE_CAN_MB0;
+
+  if ((AT91F_CAN_GetStatus(AT91C_BASE_CAN) & RX_INT_MSK) == 0)
+    return 0;		// Nothing received
+
+  for (mask = 1;
+       (mask & RX_INT_MSK) && !(AT91F_CAN_GetStatus(AT91C_BASE_CAN) & mask);
+	mask <<= 1, mb_ptr++)	// Search the first MB received
+  {
+  }
+  m->cob_id = AT91F_CAN_GetFamilyID(mb_ptr);
+  m->len = (AT91F_CAN_GetMessageStatus(mb_ptr) & AT91C_CAN_MDLC) >> 16;
+  m->rtr = (AT91F_CAN_GetMessageStatus(mb_ptr) & AT91C_CAN_MRTR) ? 1 : 0;
+  *(UNS32*)(&m->data[0]) = AT91F_CAN_GetMessageDataLow(mb_ptr);
+  *(UNS32*)(&m->data[4]) = AT91F_CAN_GetMessageDataHigh(mb_ptr);
+  // Enable Reception on Mailbox
+  AT91F_CAN_CfgMessageModeReg(mb_ptr, AT91C_CAN_MOT_RX | AT91C_CAN_PRIOR);
+  AT91F_CAN_InitTransferRequest(AT91C_BASE_CAN, mask);
+  return 1;		// message received
+}

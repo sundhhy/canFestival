@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;canfestival-3/drives/AM335x/can.h&apos; to &apos;dcan.h&apos;" description="Rename resource &apos;can.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="drives/AM335x/can.h" name="dcan.h" stamp="1477555345169" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;canfestival-3/include/qnx&apos; to &apos;qnx_os&apos;" description="Rename resource &apos;qnx&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="include/qnx" name="qnx_os" stamp="1477555834094" updateReferences="true"/>
+</session>
