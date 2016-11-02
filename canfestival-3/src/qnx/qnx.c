@@ -145,7 +145,10 @@ void canReceiveLoop(CAN_PORT port)
 
        while (((CANPort*)port)->used) {
                if (DLL_CALL(canReceive)(((CANPort*)port)->fd, &m) != 0)
-                       break;
+               {
+            	   delay(1);
+				   continue;
+               }
 
                EnterMutex();
                canDispatch(((CANPort*)port)->d, &m);

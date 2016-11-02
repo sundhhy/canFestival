@@ -2,8 +2,8 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="713"/>
-		<item key="DIALOG_HEIGHT" value="399"/>
 		<item key="DIALOG_FONT_NAME" value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑"/>
+		<item key="DIALOG_HEIGHT" value="399"/>
 		<item key="DIALOG_Y_ORIGIN" value="330"/>
 		<item key="DIALOG_WIDTH" value="273"/>
 	</section>
@@ -11,10 +11,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="MSG_WAR"/>
+		<item key="selection" value="PDO3tx"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="false"/>
 		<list key="findhistory">
+			<item value="PDO3tx"/>
 			<item value="MSG_WAR"/>
 			<item value="win32test_Data"/>
 			<item value="win32"/>

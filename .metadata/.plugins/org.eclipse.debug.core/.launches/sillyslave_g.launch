@@ -14,7 +14,7 @@
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="run"/>
 <booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="true"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN_SYMBOL" value="main"/>
-<stringAttribute key="org.eclipse.cdt.launch.FORMAT" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;contentList/&gt;"/>
+<stringAttribute key="org.eclipse.cdt.launch.FORMAT" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;contentList&gt;&lt;content id=&quot;len-m-canDispatch-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;cob_id-m-canDispatch-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;cob_id-m-canReceiveLoop-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;nodeId-proceedNODE_GUARD-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;cob_id-canDispatch-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;cob_id-m-proceedSDO-(format)&quot; val=&quot;4&quot;/&gt;&lt;/contentList&gt;"/>
 <stringAttribute key="org.eclipse.cdt.launch.GLOBAL_VARIABLES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;globalVariableList/&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList/&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.PLATFFORM" value="qnx"/>

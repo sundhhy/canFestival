@@ -105,6 +105,7 @@ OUTPUT	1 if a message received
 		recv_msg = &AM335X_CANDEV_Parameter.DCAN_REV_DATA[*instance][AM335X_CANDEV_Parameter.MsgHead[*instance]];
 		m->len =  recv_msg->len;
 		m->cob_id = recv_msg->cob_id;
+		m->rtr = recv_msg->rtr;
 		memset( m->data, 0, 8);
 		memcpy( m->data, recv_msg->data , m->len);
 		recv_msg->cob_id = 0;
@@ -114,10 +115,10 @@ OUTPUT	1 if a message received
 		//队列中没有数据采清除接受标志
 		if( AM335X_CANDEV_Parameter.MsgHead[*instance] ==  AM335X_CANDEV_Parameter.MsgTail[*instance])
 			atomic_clr(&AM335X_CANDEV[*instance].devinfo->errstatus,AM335X_DCAN_ERR_RXOK);
-		return 1;
+		return 0;
 	}
 
-	return 0;
+	return 1;
 
 }
 

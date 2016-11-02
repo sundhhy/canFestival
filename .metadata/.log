@@ -1818,3 +1818,399 @@ HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.e
 HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction,
 	handler=ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction),
 	expression=AndExpression(ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@1b8119a),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1b8119a)),sourcePriority=16640)
+!SESSION 2016-10-31 09:43:50.293 -----------------------------------------------
+eclipse.buildId=201006232051
+java.version=1.5.0_11
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2016-10-31 09:43:50.822
+!MESSAGE ProvisioningEventBus could not be obtained. Metadata caches may not be cleaned up properly.
+
+!ENTRY org.eclipse.ui.workbench 2 0 2016-10-31 09:43:54.882
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2016-10-31 09:43:54.882
+!MESSAGE Conflict for 'AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction':
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction),
+	expression=AndExpression(ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@117c0eb),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@117c0eb)),sourcePriority=16640)
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction),
+	expression=AndExpression(ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@117c0eb),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@117c0eb)),sourcePriority=16640)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-10-31 13:48:16.017
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.net.SocketException: socket closed
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.DataInputStream.read(Unknown Source)
+	at com.qnx.tools.utils.target.TargetProcess$InputStreamWrapper.read(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at java.io.FilterInputStream.read(Unknown Source)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:48:37.142
+!MESSAGE Attempt to connect to the target '192.192.1.7' failed.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:48:37.143
+!MESSAGE Target is not responding (timed out)
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-10-31 13:49:02.236
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.net.SocketException: socket closed
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.DataInputStream.read(Unknown Source)
+	at com.qnx.tools.utils.target.TargetProcess$InputStreamWrapper.read(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at java.io.FilterInputStream.read(Unknown Source)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:49:05.302
+!MESSAGE Attempt to connect to the target '192.192.1.7' failed.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:49:05.302
+!MESSAGE Target is not responding (timed out)
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-10-31 13:49:58.474
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.net.SocketException: socket closed
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.DataInputStream.read(Unknown Source)
+	at com.qnx.tools.utils.target.TargetProcess$InputStreamWrapper.read(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at java.io.FilterInputStream.read(Unknown Source)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:50:10.930
+!MESSAGE Attempt to connect to the target '192.192.1.7' failed.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:50:10.930
+!MESSAGE Target is not responding (timed out)
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:50:28.638
+!MESSAGE Attempt to connect to the target '192.192.1.7' failed.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.cdt.debug.mi.core 4 150 2016-10-31 13:50:28.638
+!MESSAGE Target is not responding (timed out)
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Target is not responding (timed out)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand0(MISession.java:607)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:573)
+	at org.eclipse.cdt.debug.mi.core.MISession.postCommand(MISession.java:538)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.connect(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXGDBSession(Unknown Source)
+	at com.qnx.tools.ide.qde.debug.internal.core.QDECDIDebugger.startQNXSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.initializeDebuggerSession(Unknown Source)
+	at com.qnx.tools.ide.qde.internal.ui.launch.QDELaunchConfigurationDelegate.launch(Unknown Source)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:866)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1069)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-10-31 13:50:28.680
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.net.SocketException: socket closed
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.DataInputStream.read(Unknown Source)
+	at com.qnx.tools.utils.target.TargetProcess$InputStreamWrapper.read(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at java.io.FilterInputStream.read(Unknown Source)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-10-31 14:36:48.991
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-10-31 14:36:48.991
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-10-31 14:36:48.992
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-10-31 14:36:48.992
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-11-01 09:25:47.176 -----------------------------------------------
+eclipse.buildId=201006232051
+java.version=1.5.0_11
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2016-11-01 09:25:47.670
+!MESSAGE ProvisioningEventBus could not be obtained. Metadata caches may not be cleaned up properly.
+
+!ENTRY org.eclipse.ui.workbench 2 0 2016-11-01 09:25:55.003
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2016-11-01 09:25:55.003
+!MESSAGE Conflict for 'AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction':
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction),
+	expression=AndExpression(ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@1e2481b),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1e2481b)),sourcePriority=16640)
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction),
+	expression=AndExpression(ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@1e2481b),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1e2481b)),sourcePriority=16640)
+!SESSION 2016-11-02 08:53:11.307 -----------------------------------------------
+eclipse.buildId=201006232051
+java.version=1.5.0_11
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.equinox.p2.repository 4 0 2016-11-02 08:53:11.793
+!MESSAGE ProvisioningEventBus could not be obtained. Metadata caches may not be cleaned up properly.
+
+!ENTRY org.eclipse.ui.workbench 2 0 2016-11-02 08:53:18.435
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2016-11-02 08:53:18.435
+!MESSAGE Conflict for 'AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction':
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction),
+	expression=AndExpression(ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@1e2481b),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1e2481b)),sourcePriority=16640)
+HandlerActivation(commandId=AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction,
+	handler=ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction),
+	expression=AndExpression(ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@1e2481b),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1e2481b)),sourcePriority=16640)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-11-02 10:37:29.940
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-11-02 10:37:29.940
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-11-02 10:37:29.941
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-11-02 10:37:29.941
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-11-02 10:41:06.462
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-11-02 10:41:06.463
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 2 2016-11-02 10:41:06.464
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.debug.core 4 125 2016-11-02 10:41:06.464
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.ui.views.memory.AbstractMemoryViewPane.handleDebugEvents(AbstractMemoryViewPane.java:286)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1081)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1115)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:382)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

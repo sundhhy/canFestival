@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="LastUsedSourceTemplate" value="Default C source template"/>
 	<item key="LastUsedHeaderTemplate" value="Default C header template"/>
+	<item key="LastUsedSourceTemplate" value="Default C source template"/>
 	<section name="PDOMSearchPage">
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="NMT"/>
+			<item value="INIT_FLAGS_EXTENDED_MID"/>
+			<item value="init_msg_rx"/>
+			<item value="TxRqst"/>
+			<item value="canReceiveLoop"/>
 			<item value="canOpen"/>
 			<item value="canSend_driver"/>
 			<item value="_driver"/>
@@ -23,6 +28,10 @@
 			<item value="canSend"/>
 			<item value="timer_notify"/>
 		</list>
+	</section>
+	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration.internal">
+		<item key="size.width" value="695"/>
+		<item key="size.height" value="248"/>
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>

@@ -834,39 +834,23 @@ void init_msg_rx(CANDEV_AM335X_INFO *devinfo, CANDEV_AM335X_INIT *devinit, int i
 		msg->dcanmsg.mxtd = 0;	/* The extended identifier bit (IDE) has no effect on the acceptance filtering. */
 	}
 	msg->dcanmsg.Dir    = 0;	/* Direction = receive */
-	msg->dcanmsg.ID     = devinit->midrx + CANMID_DEFAULT * mxid;
+//	msg->dcanmsg.ID     = devinit->midrx + CANMID_DEFAULT * mxid;
+	msg->dcanmsg.ID		= 0;
 
 	/* IF1/IF2 Message Control Registers */
 	msg->dcanmsg.NewDat = 0;
 	msg->dcanmsg.MsgLst = 0;
 	msg->dcanmsg.IntPnd = 0;
-	msg->dcanmsg.UMask  = 0;
+	msg->dcanmsg.UMask  = 1;
 	msg->dcanmsg.TxIE   = 0;
 	msg->dcanmsg.RxIE   = 1;
-	//msg->dcanmsg.RmtEn  = 1;
-	msg->dcanmsg.RmtEn  = 0;	//sundh:20121126 we don't use RmtEn
+	msg->dcanmsg.RmtEn  = 0;
 	msg->dcanmsg.TxRqst = 0;
 	msg->dcanmsg.EoB    = 1;
 	msg->dcanmsg.DLC    = devinit->cinit.datalen;
-	msg->dcanmsg.MsgVal = 0;
+	msg->dcanmsg.MsgVal = 1;
 
-//	if((mxid) < (devinfo->numrx - 1))
-//	{
-//		msg->dcanmsg.EoB    = 0;
-//		msg->dcanmsg.ID = 0;
-//		msg->dcanmsg.MsgVal = 1;
-//		//msg->dcanmsg.RxIE   = 0;
-//
-//	}
-//
-//	if((mxid) == (devinfo->numrx - 1))
-	{
-		msg->dcanmsg.EoB    = 1;
-		msg->dcanmsg.ID = 0;
-		msg->dcanmsg.MsgVal = 1;
-	}
 
-	msg->dcanmsg.UMask  = 1;
 
 
 }
@@ -911,8 +895,7 @@ void init_msg_tx(CANDEV_AM335X_INFO *devinfo, CANDEV_AM335X_INIT *devinit, int i
 	msg->dcanmsg.UMask  = 0;
 	msg->dcanmsg.TxIE   = 1;
 	msg->dcanmsg.RxIE   = 0;
-	//msg->dcanmsg.RmtEn  = 1;
-	msg->dcanmsg.RmtEn  = 0;	//sundh:20121126 we don't use RmtEn
+//	msg->dcanmsg.RmtEn  = 1;
 	msg->dcanmsg.TxRqst = 0;
 	msg->dcanmsg.EoB    = 1;
 	msg->dcanmsg.DLC    = devinit->cinit.datalen;
@@ -1320,8 +1303,9 @@ const struct sigevent *can_intr(void *area, int id)
 						AM335X_CANDEV_Parameter.DCAN_REV_DATA[port][AM335X_CANDEV_Parameter.MsgTail[port]].data[pos++]	=	(AM335X_CANDEV[port].devinfo->canmsg[mbxid].canmdh&0x0000ff00)>>8;
 						AM335X_CANDEV_Parameter.DCAN_REV_DATA[port][AM335X_CANDEV_Parameter.MsgTail[port]].data[pos++]	=	(AM335X_CANDEV[port].devinfo->canmsg[mbxid].canmdh&0x00ff0000)>>16;
 						AM335X_CANDEV_Parameter.DCAN_REV_DATA[port][AM335X_CANDEV_Parameter.MsgTail[port]].data[pos++]	=	(AM335X_CANDEV[port].devinfo->canmsg[mbxid].canmdh&0xff000000)>>24;
-						AM335X_CANDEV_Parameter.DCAN_REV_DATA[port][AM335X_CANDEV_Parameter.MsgTail[port]].len	= 	AM335X_CANDEV[port].devinfo->canmsg[mbxid].mctrl & 0x0f - 4;		//DLC
-
+						AM335X_CANDEV_Parameter.DCAN_REV_DATA[port][AM335X_CANDEV_Parameter.MsgTail[port]].len	= 	(AM335X_CANDEV[port].devinfo->canmsg[mbxid].mctrl & 0x0f) -4;		//DLC
+						//ARB的bit29 DIR可以指示当前的帧是远程帧还是数据帧
+						AM335X_CANDEV_Parameter.DCAN_REV_DATA[port][AM335X_CANDEV_Parameter.MsgTail[port]].rtr	= ( AM335X_CANDEV[port].devinfo->canmsg[mbxid].arb >> AM335X_DCAN_IFxARB_DIR_SHIFT) & 1;
 
 						AM335X_CANDEV_Parameter.MsgTail[port] = (AM335X_CANDEV_Parameter.MsgTail[port]+1) % MAXMSGNUM;
 
@@ -1381,14 +1365,18 @@ int Transfer(appMessage_t *sendmsg,unsigned char port)
 {
 	canmsg_t msg;
 	uint32_t id=0;
-	uint8_t i;
-	uint16_t  *seq;
-	unsigned char dat[8];
+
+
+
 	static int send_count = 0;
 	AM335X_CANDEV[port].mbxid=(AM335X_CAN_RX_NUM);
 	//sundh 140325 如果这路CAN链路正常，那么按照正常的规则发送，否则就只向第一个发送邮箱发送数据
 
-
+	//远程帧只能从接收邮箱发送
+	if( sendmsg->rtr)
+	{
+		AM335X_CANDEV[port].mbxid = 0;
+	}
 
 	while(AM335X_CANDEV[port].devinfo->canmsg[AM335X_CANDEV[port].mbxid].dcanmsg.NewDat)
 	{
@@ -1401,41 +1389,33 @@ int Transfer(appMessage_t *sendmsg,unsigned char port)
 
 	}
 
-	memset(&msg.cmsg.dat, 0, AM335X_DCANMCTL_DLC_BYTE8);
-//	for(i=4;i<8;i++)
-//		dat[i-4]= sendmsg->data[i];
-//	for(i=8;i<12;i++)
-//		dat[i-4]= sendmsg->data[i];
+	//
 
+	if( AM335X_CANDEV[port].mbxid >= AM335X_CAN_RX_NUM && sendmsg->rtr)
+	{
+		AM335X_CANDEV[port].mbxid = 0;
+	}
+	memset(&msg.cmsg.dat, 0, AM335X_DCANMCTL_DLC_BYTE8);
 	memcpy(&msg.cmsg.dat, sendmsg->data, sendmsg->len);
 	id = sendmsg->cob_id & 0x1fffffff;
-//	id=id>>3;
 	msg.cmsg.len = sendmsg->len + 4;
+
 	AM335X_CANDEV[port].devinfo->canmsg[AM335X_CANDEV[port].mbxid].dcanmsg.ID=id;
 	AM335X_CANDEV[port].devinfo->canmsg[AM335X_CANDEV[port].mbxid].dcanmsg.NewDat = 1;
+	AM335X_CANDEV[port].devinfo->canmsg[AM335X_CANDEV[port].mbxid].dcanmsg.TxRqst = sendmsg->rtr;
+	if( sendmsg->rtr)
+	{
+		AM335X_CANDEV[port].devinfo->canmsg[AM335X_CANDEV[port].mbxid].dcanmsg.TxRqst = 1;
+
+
+	}
+
 	can_am335x_tx(&AM335X_CANDEV[port],&msg);
-
-//	printf("send mbxid %d : arb = %08x\n", AM335X_CANDEV[port].mbxid, id);
-
-//	seq = str + 2;
-//	if( *seq == 0x4e)
-//	if(str[1] == 0x54)
-//	if(send_count > 100 && send_count < 150)
-//	if(send_count < 100)
-//	{
-//		printf("send ID %08x \n",AM335X_CANDEV[port].devinfo->canmsg[AM335X_CANDEV[port].mbxid].dcanmsg.ID);
-//		for(i=0;i<12;i++)
-//			printf("%02x ", str[i]);
-//		printf("\n");
-//	}
 
 	send_count ++;
 	if( send_count > 1000)
 		send_count = 1000;
-//
 
-//	AM335X_CANDEV[port].mbxid++;
-//	AM335X_CANDEV[port].mbxid %= AM335X_CAN_NUM_MAILBOX;
 	return EXIT_SUCCESS;
 
 
